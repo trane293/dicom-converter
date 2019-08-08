@@ -70,6 +70,11 @@ The command line arguments are:
   - (2): Linear
 - `--out_format`: Output format to save files.
 
+### Future Work
+- Perform registration between sequences using a single sequence as template. 
+- Provide manual override interface for cases where automatic inference may fail to determine sequences. 
+- Add MM-GAN sequence synthesis feature to synthesize missing sequences. 
+
 # Application: Segmentation Pipeline
 
 This utility may be used as a preliminary step for any pipeline that requires data to be in a structured and clean format. In this project, a fully-working application is included in the form of a segmentation pipeline. 
