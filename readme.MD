@@ -72,12 +72,13 @@ The command line arguments are:
 
 ### Future Work
 - Perform registration between sequences using a single sequence as template. 
+- Perform automatic skull stripping of sequences. 
 - Provide manual override interface for cases where automatic inference may fail to determine sequences. 
 - Add MM-GAN sequence synthesis feature to synthesize missing sequences. 
 
 # Application: Segmentation Pipeline
 
-This utility may be used as a preliminary step for any pipeline that requires data to be in a structured and clean format. In this project, a fully-working application is included in the form of a segmentation pipeline. 
+This utility may be used as a preliminary step for any pipeline that requires data to be in a structured and clean format. Typical use cases will be for machine learning/deep learning workflows which requires clean data in the form of sequences of particular shape and voxel spacing. In this project, a fully-working application is included in the form of a segmentation pipeline. 
 
 The segmentation pipeline is included in `apps/segmentation-pipeline/ca-cnn` and uses the open source pretrained models from https://github.com/taigw/brats17 
 Details regarding how segmentation is performed, and how the ca-cnn code is structured can be found on the original author's repository linked above. 
