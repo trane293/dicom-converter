@@ -1,4 +1,4 @@
-Automated VGH Sequence Detector and Processor
+Automated VGH Sequence Detector and Processor with included Segmentation Pipeline
 ===========
 
 This python code is a rule-based NLP interpreter for automatically inferring sequence labels from variable natural text in DICOM files exported from Vancouver General Hospital. 
@@ -69,3 +69,30 @@ The command line arguments are:
   - (1): NearestNeighbor
   - (2): Linear
 - `--out_format`: Output format to save files.
+
+# Application: Segmentation Pipeline
+
+This utility may be used as a preliminary step for any pipeline that requires data to be in a structured and clean format. In this project, a fully-working application is included in the form of a segmentation pipeline. 
+
+The segmentation pipeline is included in `apps/segmentation-pipeline/ca-cnn` and uses the open source pretrained models from https://github.com/taigw/brats17 
+Details regarding how segmentation is performed, and how the ca-cnn code is structured can be found on the original author's repository linked above. 
+
+The pipeline can be launched by the command:
+```bash
+bash run_pipeline.sh
+```
+
+However in order to run the pipeline, please ensure:
+- You have a GPU enabled workstation.
+- CUDA and CUDNN is installed and working.
+- Created a new virtualenv using the `requirements.txt` file INSIDE `ca-cnn` folder.  
+
+The pipeline performs the following steps:
+1. Convert VGH DICOM data into nii.gz data with four sequence (T1, T2, T1CE, T2FLAIR)
+2. Copies the newly converted data into `apps/segmentation-pipeline/ca-cnn/data`.
+3. Creates a new folder `seg_out` in `apps/segmentation-pipeline/ca-cnn/data`. 
+4. Prepares configuration file test_names.txt with the testing data present in `data` folder. 
+5. Loads pretrained BRATS2018 segmentation models from `model18` into GPU memory. 
+6. Loads all data from `data`.
+7. Runs segmentation algorithm on loaded data. 
+8. Write segmentation masks into `seg_out` folder for each patient. 

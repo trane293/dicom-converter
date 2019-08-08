@@ -2,3 +2,5 @@
 *pycache
 *ipynb_checkpoints
 *pyc
+apps/segmentation-pipeline/ca-cnn/data/
+apps/segmentation-pipeline/ca-cnn/seg_out/

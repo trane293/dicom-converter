@@ -136,9 +136,13 @@ for k in pat_data.keys():
     pat_path = os.path.join(save_path, k)
     for s in pat_data[k].keys():
         if pat_data[k][s] is not None:
-            seq_path = os.path.join(pat_path, s)
-            seq_name = os.path.join(seq_path, "Image_{}.{}".format(s, opt.out_format))
-            if not os.path.exists(seq_path):
-                os.makedirs(seq_path)
+            # seq_path = os.path.join(pat_path, s)
+
+            if 'FLAIR' in s:
+                seq_name = os.path.join(pat_path, "Image_flair.{}".format(opt.out_format))
+            else:
+                seq_name = os.path.join(pat_path, "Image_{}.{}".format(s.lower(), opt.out_format))
+            if not os.path.exists(pat_path):
+                os.makedirs(pat_path)
 
             sitk.WriteImage(pat_data[k][s], seq_name)
